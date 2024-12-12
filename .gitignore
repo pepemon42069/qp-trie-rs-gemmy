@@ -1,3 +1,7 @@
 /target/
 **/*.rs.bk
 Cargo.lock
+
+# added these two
+.idea
+.*iml

@@ -68,6 +68,19 @@ impl<'a, K: 'a, V: 'a> Iterator for Iter<'a, K, V> {
     }
 }
 
+impl<'a, K: 'a, V: 'a> DoubleEndedIterator for Iter<'a, K, V> {
+    fn next_back(&mut self) -> Option<Self::Item> {
+        match self.stack.pop() {
+            Some(Node::Leaf(leaf)) => Some((&leaf.key, &leaf.val)),
+            Some(Node::Branch(branch)) => {
+                self.stack.extend(branch.iter());
+                self.next_back()
+            }
+            None => None,
+        }
+    }
+}
+
 /// An iterator over immutable references to keys and mutable references to values in a QP-trie.
 #[derive(Debug)]
 pub struct IterMut<'a, K: 'a, V: 'a> {

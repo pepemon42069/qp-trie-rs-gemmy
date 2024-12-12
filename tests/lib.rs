@@ -498,3 +498,16 @@ fn issue_36_node_count_after_clear() {
     trie.clear();
     assert_eq!(0, trie.count());
 }
+
+#[test]
+fn new_feature_iter_rev() {
+    let mut trie = Trie::new();
+    trie.insert(1u64.to_be_bytes(), 1);
+    trie.insert(3u64.to_be_bytes(), 3);
+    trie.insert(2u64.to_be_bytes(), 2);
+    let mut rev_itr = trie.iter().rev();
+    for test_value  in (1..=3).rev() {
+        let (.., value) = rev_itr.next().unwrap();
+        assert_eq!(*value, test_value);
+    }
+}

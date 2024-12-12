@@ -26,6 +26,7 @@ mod trie;
 mod util;
 
 pub mod wrapper;
+pub mod triekey;
 
 pub use entry::{Entry, OccupiedEntry, VacantEntry};
 pub use iter::{IntoIter, Iter, IterMut};
