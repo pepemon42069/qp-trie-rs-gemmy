@@ -1,6 +1,6 @@
 use core::borrow::Borrow;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct TrieKey {
     value: [u8; 8],
 }
